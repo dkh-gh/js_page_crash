@@ -31,14 +31,11 @@ function prepareCrashList() {
 
 function crashElement() {
 	
-// 	document.querySelector('body').style.height = pageHeight + 'px';
-// 	document.querySelector('body').style.overflow = 'hidden';
-	
 	let num = parseInt(Math.random()*crashList.length);
 	if(crashList[num]['object'].tagName != 'BODY')
 		crashList[num]['active'] = true;
 	
-	window.setTimeout(crashElement, Math.random()*500);
+	window.setTimeout(crashElement, Math.random()*150);
 }
 
 
@@ -50,14 +47,12 @@ function crashAnim() {
 			crashList[i]['top'] *= 1.1;
 			crashList[i]['opacity'] -= .05;
 			crashList[i]['rotation'] += crashList[i]['left']/500;
-			crashList[i]['object'].style.position = 'abslute';
+			crashList[i]['object'].style.position = 'fixed';
 			crashList[i]['object'].style.transform = `
 				rotate(` + crashList[i]['rotation'] + `deg)
-				translateX(` + crashList[i]['left'] + `px)
-				translateY(` + crashList[i]['top'] + `px)
 			`;
-// 			crashList[i]['object'].style.left = crashList[i]['left'] + 'px';
-// 			crashList[i]['object'].style.top = crashList[i]['top'] + 'px';
+			crashList[i]['object'].style.left = crashList[i]['left'] + 'px';
+			crashList[i]['object'].style.top = crashList[i]['top'] + 'px';
 			crashList[i]['object'].style.opacity = crashList[i]['opacity'];
 			if(crashList[i]['opacity'] < 0) {
 				crashList[i]['object'].style.display = 'none';
